@@ -6,10 +6,12 @@
 #include <vector>
 
 #include "days/day01/day01.h"
+#include "days/day02/day02.h"
 
 using SolverFn = int (*)(const std::string&);
-std::array<std::vector<SolverFn>, 1> days = {
-    std::vector({Advent::Day01::part1, Advent::Day01::part2})  // Day 1
+std::array<std::vector<SolverFn>, 2> days = {
+    std::vector({Advent::Day01::part1, Advent::Day01::part2}),  // Day 1
+    std::vector({Advent::Day02::part1, Advent::Day02::part2})   // Day 2
 };
 
 int main(int argc, char* argv[])

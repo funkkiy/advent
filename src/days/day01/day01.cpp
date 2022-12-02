@@ -1,7 +1,5 @@
 #include "day01.h"
 
-#include <fmt/core.h>
-
 #include <algorithm>
 #include <ranges>
 #include <string>
