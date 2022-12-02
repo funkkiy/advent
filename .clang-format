@@ -1,0 +1,15 @@
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+Language                                  : Cpp
+BasedOnStyle                              : Google 
+Standard                                  : Auto
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+AlignTrailingComments                     : true
+BreakBeforeBraces                         : WebKit
+BreakBeforeTernaryOperators               : true
+BreakConstructorInitializers              : BeforeComma
+Cpp11BracedListStyle                      : true
+IndentWidth                               : 4
+SpacesInAngles                            : false
+SpacesInSquareBrackets                    : false
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
