@@ -39,6 +39,8 @@ list(APPEND Advent_SOURCES
     src/days/day01/day01.h
     src/days/day02/day02.cpp
     src/days/day02/day02.h
+    src/days/day03/day03.cpp
+    src/days/day03/day03.h
 )
 
 list(APPEND Advent_INCLUDES
@@ -49,6 +51,7 @@ list(APPEND Advent_INCLUDES
     src/days/common
     src/days/day01
     src/days/day02
+    src/days/day03
 )
 
 list(APPEND Advent_VENDOR_SOURCES
@@ -67,7 +70,7 @@ target_include_directories(Advent SYSTEM PRIVATE
     ${Advent_VENDOR_INCLUDES}
 )
 target_link_libraries(Advent)
-target_compile_features(Advent PRIVATE cxx_std_20)
+target_compile_features(Advent PRIVATE cxx_std_23)
 target_compile_options(Advent PRIVATE
     ${WALL_OTHERS} ${WALL_MSVC}
 )

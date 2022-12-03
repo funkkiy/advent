@@ -7,11 +7,13 @@
 
 #include "days/day01/day01.h"
 #include "days/day02/day02.h"
+#include "days/day03/day03.h"
 
 using SolverFn = int (*)(const std::string&);
-std::array<std::vector<SolverFn>, 2> days = {
+std::array<std::vector<SolverFn>, 3> days = {
     std::vector({Advent::Day01::part1, Advent::Day01::part2}),  // Day 1
-    std::vector({Advent::Day02::part1, Advent::Day02::part2})   // Day 2
+    std::vector({Advent::Day02::part1, Advent::Day02::part2}),  // Day 2
+    std::vector({Advent::Day03::part1, Advent::Day03::part2})   // Day 3
 };
 
 int main(int argc, char* argv[])
@@ -38,6 +40,11 @@ int main(int argc, char* argv[])
         std::string inputContents = {
             std::istreambuf_iterator<char>(inputStream),
             std::istreambuf_iterator<char>()};
+        // If present, remove the last empty line
+        size_t lastCharacterIdx = inputContents.length() - 1;
+        if (inputContents[lastCharacterIdx] == '\n') {
+            inputContents = inputContents.substr(0, lastCharacterIdx);
+        }
         return days.at(runningDay - 1)[runningPart - 1](inputContents);
     }
 
