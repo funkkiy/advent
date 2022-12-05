@@ -43,6 +43,8 @@ list(APPEND Advent_SOURCES
     src/days/day03/day03.h
     src/days/day04/day04.cpp
     src/days/day04/day04.h
+    src/days/day05/day05.cpp
+    src/days/day05/day05.h
 )
 
 list(APPEND Advent_INCLUDES
@@ -55,6 +57,7 @@ list(APPEND Advent_INCLUDES
     src/days/day02
     src/days/day03
     src/days/day04
+    src/days/day05
 )
 
 list(APPEND Advent_VENDOR_SOURCES
