@@ -10,14 +10,16 @@
 #include "days/day03/day03.h"
 #include "days/day04/day04.h"
 #include "days/day05/day05.h"
+#include "days/day06/day06.h"
 
 using SolverFn = int (*)(const std::string&);
-std::array<std::vector<SolverFn>, 5> days = {
+std::array<std::vector<SolverFn>, 6> days = {
     std::vector({Advent::Day01::part1, Advent::Day01::part2}),  // Day 1
     std::vector({Advent::Day02::part1, Advent::Day02::part2}),  // Day 2
     std::vector({Advent::Day03::part1, Advent::Day03::part2}),  // Day 3
     std::vector({Advent::Day04::part1, Advent::Day04::part2}),  // Day 4
-    std::vector({Advent::Day05::part1, Advent::Day05::part2})   // Day 5
+    std::vector({Advent::Day05::part1, Advent::Day05::part2}),  // Day 5
+    std::vector({Advent::Day06::part1, Advent::Day06::part2})   // Day 6
 };
 
 int main(int argc, char* argv[])
