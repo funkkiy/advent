@@ -4,12 +4,12 @@ project(Advent LANGUAGES CXX)
 
 string(CONCAT WALL_OTHERS "$<"
     "$<AND:"
-        "$<COMPILE_LANGUAGE:CXX>,"
+        "$<COMPILE_LANGUAGE:CXX,C>,"
         "$<NOT:"
             "$<CXX_COMPILER_ID:MSVC>"
         ">"
     ">:"
-    "-Wall -Wextra"
+    "SHELL:-Wall -Wextra -Wdouble-promotion -Wshadow"
 ">")
 
 string(CONCAT WALL_MSVC "$<"
@@ -47,6 +47,8 @@ list(APPEND Advent_SOURCES
     src/days/day05/day05.h
     src/days/day06/day06.cpp
     src/days/day06/day06.h
+    src/days/day07/day07.cpp
+    src/days/day07/day07.h
 )
 
 list(APPEND Advent_INCLUDES
@@ -61,6 +63,7 @@ list(APPEND Advent_INCLUDES
     src/days/day04
     src/days/day05
     src/days/day06
+    src/days/day07
 )
 
 list(APPEND Advent_VENDOR_SOURCES
@@ -84,8 +87,8 @@ target_compile_options(Advent PRIVATE
     ${WALL_OTHERS} ${WALL_MSVC}
 )
 
-# fmt
-add_subdirectory(vendor/fmt-9.1.0)
+# libs
+add_subdirectory(vendor)
 target_link_libraries(Advent fmt::fmt)
 
 # msvc-specific advent settings
