@@ -8,12 +8,25 @@
 
 namespace Advent {
 
+template <typename... Types> void Print(std::string_view s, const Types... args)
+{
+    fmt::print(
+        fg(fmt::color::green) | fmt::emphasis::italic, std::string(s), args...);
+}
+
+template <typename... Types>
+void PrintLnUndecorated(std::string_view s, const Types... args)
+{
+    Print(s, args...);
+    Print("\n");
+}
+
 template <typename... Types>
 void PrintLn(std::string_view s, const Types... args)
 {
+
     fmt::print(fg(fmt::color::yellow), "* ");
-    fmt::print(fg(fmt::color::green) | fmt::emphasis::italic,
-               std::string(s) + '\n', args...);
+    PrintLnUndecorated(s, args...);
 }
 
-}  // namespace Advent
+} // namespace Advent
