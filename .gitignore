@@ -4,3 +4,7 @@
 
 # Visual Studio CMake Settings
 /CMakeSettings.json
+
+# CLion Directories
+.idea/
+cmake-build-*/
