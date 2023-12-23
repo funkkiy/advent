@@ -1,15 +1,10 @@
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
 Language                                  : Cpp
-BasedOnStyle                              : Google 
+BasedOnStyle                              : WebKit 
 Standard                                  : Auto
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
 AlignTrailingComments                     : true
-BreakBeforeBraces                         : WebKit
-BreakBeforeTernaryOperators               : true
-BreakConstructorInitializers              : BeforeComma
+ColumnLimit                               : 80
 Cpp11BracedListStyle                      : true
-IndentWidth                               : 4
-SpacesInAngles                            : false
-SpacesInSquareBrackets                    : false
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
