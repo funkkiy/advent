@@ -95,11 +95,11 @@ void FsNode::setParent(std::shared_ptr<FsDirectory> parent)
     }
 }
 
-int part1(const std::string& input)
+std::vector<std::shared_ptr<FsDirectory>> parseInput(std::string_view input)
 {
-    std::vector<std::shared_ptr<FsDirectory>> dirStack;
     std::vector<std::shared_ptr<FsDirectory>> allDirs;
 
+    std::vector<std::shared_ptr<FsDirectory>> dirStack;
     for (auto s : std::views::split(input, std::string_view {"\n"})) {
         std::string_view sv = std::string_view(s);
 
@@ -121,7 +121,7 @@ int part1(const std::string& input)
                 allDirs.push_back(newDir);
             }
         } else if (isdigit(sv[0])) {
-            size_t fileSize = atoi(sv.substr(0, sv.find(" ")).data());
+            size_t fileSize = ::atoi(sv.substr(0, sv.find(" ")).data());
             std::string_view fileName = sv.substr(sv.find(" ") + 1);
 
             auto newFile = std::make_shared<FsFile>(fileName, fileSize);
@@ -129,18 +129,39 @@ int part1(const std::string& input)
         }
     }
 
+    return allDirs;
+}
+
+int part1(const std::string& input)
+{
+    auto allDirs = parseInput(input);
+
     size_t sizeSum = 0;
-    for (auto& dir : allDirs) {
+    for (const auto& dir : allDirs) {
         size_t size = dir->getSize();
         if (size <= 100000) {
             sizeSum += size;
         }
     }
-    Advent::PrintLn("size sum is {}", sizeSum);
+    Advent::PrintLn("Size Sum: {}", sizeSum);
 
     return 0;
 }
 
-int part2(const std::string& input) { return 0; }
+int part2(const std::string& input)
+{
+    auto allDirs = parseInput(input);
+
+    size_t minDeletable = std::numeric_limits<size_t>::max();
+    for (const auto& dir : allDirs) {
+        size_t dirSize = dir->getSize();
+        if (dirSize >= 358913 && dirSize < minDeletable) {
+            minDeletable = dirSize;
+        }
+    }
+    Advent::PrintLn("Smallest Removable Directory: {}", minDeletable);
+
+    return 0;
+}
 
 } // namespace Advent::Day07
