@@ -19,10 +19,7 @@ public:
     virtual ~FsNode() = default;
 
     void setParent(std::shared_ptr<FsDirectory> parent);
-    virtual void print() const = 0;
-    virtual size_t getSize() const = 0;
-
-    std::string m_id;
+    virtual size_t size() const = 0;
 
 protected:
     FsNode(std::string_view id)
@@ -30,6 +27,9 @@ protected:
         , m_parent(std::weak_ptr<FsDirectory>()) {};
 
     std::weak_ptr<FsDirectory> m_parent;
+
+private:
+    std::string m_id;
 };
 
 class FsFile : public FsNode {
@@ -40,8 +40,7 @@ public:
     {
     }
 
-    void print() const override;
-    size_t getSize() const override { return m_size; }
+    size_t size() const override { return m_size; }
 
 private:
     size_t m_size;
@@ -59,20 +58,11 @@ public:
         m_contents.push_back(node);
     }
 
-    void print() const override
-    {
-        Advent::PrintLn("- {} (dir), parent is {}, total size = {}", m_id,
-            m_parent.expired() ? "null" : m_parent.lock()->m_id, getSize());
-        for (const auto& node : m_contents) {
-            node->print();
-        }
-    }
-
-    size_t getSize() const
+    size_t size() const
     {
         size_t totalSize = 0;
         for (auto& node : m_contents) {
-            totalSize += node->getSize();
+            totalSize += node->size();
         }
         return totalSize;
     }
@@ -80,12 +70,6 @@ public:
 private:
     std::vector<std::shared_ptr<FsNode>> m_contents;
 };
-
-void FsFile::print() const
-{
-    Advent::PrintLn("- {} (file, size={}), parent is {}", m_id, m_size,
-        m_parent.expired() ? "null" : m_parent.lock()->m_id);
-}
 
 void FsNode::setParent(std::shared_ptr<FsDirectory> parent)
 {
@@ -138,8 +122,8 @@ int part1(const std::string& input)
 
     size_t sizeSum = 0;
     for (const auto& dir : allDirs) {
-        size_t size = dir->getSize();
-        if (size <= 100000) {
+        size_t size = dir->size();
+        if (size <= 100'000) {
             sizeSum += size;
         }
     }
@@ -154,8 +138,8 @@ int part2(const std::string& input)
 
     size_t minDeletable = std::numeric_limits<size_t>::max();
     for (const auto& dir : allDirs) {
-        size_t dirSize = dir->getSize();
-        if (dirSize >= 358913 && dirSize < minDeletable) {
+        size_t dirSize = dir->size();
+        if (dirSize >= 358'913 && dirSize < minDeletable) {
             minDeletable = dirSize;
         }
     }
