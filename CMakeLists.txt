@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Advent LANGUAGES CXX)
 
+# linux?
+if(UNIX AND NOT APPLE)
+	set(LINUX TRUE)
+endif()
+
 string(CONCAT WALL_OTHERS "$<"
     "$<AND:"
         "$<COMPILE_LANGUAGE:CXX,C>,"
@@ -19,6 +24,12 @@ string(CONCAT WALL_MSVC "$<"
     ">:"
     "/W4"
 ">")
+
+# in linux, use libc++ to get the latest c++ features
+if(LINUX)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++")
+endif()
 
 # enable folder hierarchy: filters on msvc
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
